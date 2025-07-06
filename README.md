@@ -1,2 +1,2 @@
 # discord-m3u8-streamer
-streams audio from a m3u8 url into a discord voice channel in the specified guild/server
+a discord.py bot that streams m3u8 audio to any channel from a specified link
