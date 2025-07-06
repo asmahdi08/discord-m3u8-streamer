@@ -42,11 +42,17 @@ async def join(interaction: discord.Interaction, m3u8_url: str):
     
     if interaction.user.voice:
         
-        channel = interaction.user.voice.channel
-        vc = await channel.connect()
         audio_src = discord.FFmpegPCMAudio(m3u8_url, **FFMPEG_OPTIONS)
+        
+        if interaction.guild.voice_client:
+            await interaction.guild.voice_client.disconnect()
+            
+        channel = interaction.user.voice.channel
+            
+        vc = await channel.connect()
+            
         vc.play(audio_src)
-        await interaction.response.send_message(f"Joined #{channel.id}")
+        await interaction.response.send_message(f"Joined channel")
         
     else:
         
